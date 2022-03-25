@@ -91,7 +91,7 @@ func (d *Decoder) decodeInt(name string, data any, val reflect.Value) (err error
 	switch {
 	case kind == reflect.Int:
 		val.SetInt(dataVal.Int())
-	case kind == reflect.Float64:
+	case kind == reflect.Float64 && d.option.WeaklyTypedInput:
 		val.SetInt(int64(dataVal.Float()))
 	case kind == reflect.String && d.option.WeaklyTypedInput:
 		var i int64
